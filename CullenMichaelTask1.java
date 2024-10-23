@@ -1,4 +1,4 @@
-//package cm;
+package cm;
 
 import org.junit.jupiter.api.Test;
 
@@ -446,16 +446,4 @@ class RateTest{
         Period periodStay = new Period(0,13);
         assertEquals(BigDecimal.valueOf(24),rate.calculate(periodStay));
     }
-}
-
-
-
-class CullenMichaelTask1{
-
-    public static void main(String[] args) {
-
-    }
-
-
-
 }
