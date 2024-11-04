@@ -1,5 +1,6 @@
-//package cm;
+package cm;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -7,12 +8,15 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RateTest{
-    //partition Rate
-    @Test // 1-4
-    void testValidCarParkKind(){
-        Period reducedPeriod = new Period(12, 15);
 
+//Name: Michael Cullen
+//Student ID: C00261635
+//Date: 22/10/2024
+class CullenMichaelRateTests{
+    //partition cm.Rate
+    @Test // 1
+    void testValidCarParkKind1(){
+        Period reducedPeriod = new Period(12, 15);
         Period normalPeriod = new Period(15, 17);
 
         // Create ArrayLists for periods
@@ -22,31 +26,86 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STAFF;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
                 BigDecimal.valueOf(3));
-        Rate rate2 = new Rate(Rate.CarParkKind.Student,
+
+        assertNotNull(rate);
+    }
+    @Test // 2
+    void testValidCarParkKind2(){
+        Period reducedPeriod = new Period(12, 15);
+        Period normalPeriod = new Period(15, 17);
+
+        // Create ArrayLists for periods
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(reducedPeriod);
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(normalPeriod);
+
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
                 BigDecimal.valueOf(3));
-        Rate rate3 = new Rate(Rate.CarParkKind.Management,
+
+
+        assertNotNull(rate);
+    }
+
+    @Test // 3
+    void testValidCarParkKind3(){
+        Period reducedPeriod = new Period(12, 15);
+        Period normalPeriod = new Period(15, 17);
+
+        // Create ArrayLists for periods
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(reducedPeriod);
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(normalPeriod);
+
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(3),
                 BigDecimal.valueOf(2));
-        Rate rate4 = new Rate(Rate.CarParkKind.Visitor,
+
+
+        assertNotNull(rate);
+    }
+
+    @Test // 4
+    void testValidCarParkKind4(){
+        Period reducedPeriod = new Period(12, 15);
+        Period normalPeriod = new Period(15, 17);
+
+        // Create ArrayLists for periods
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(reducedPeriod);
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(normalPeriod);
+
+        CarParkKind kind = CarParkKind.VISITOR;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(5),
                 BigDecimal.valueOf(2));
 
+
         assertNotNull(rate);
-        assertNotNull(rate2);
-        assertNotNull(rate3);
-        assertNotNull(rate4);
     }
 
     @Test // 5
@@ -61,7 +120,9 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STAFF;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(0),
@@ -83,7 +144,9 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STAFF;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(10),
@@ -103,7 +166,9 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STAFF;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
@@ -125,7 +190,9 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STAFF;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(10),
@@ -146,7 +213,9 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        assertThrows(IllegalArgumentException.class, () -> new Rate(Rate.CarParkKind.Student,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(-1),
@@ -165,7 +234,9 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        assertThrows(IllegalArgumentException.class, () -> new Rate(Rate.CarParkKind.Student,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(11),
@@ -183,7 +254,9 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        assertThrows(IllegalArgumentException.class, () -> new Rate(Rate.CarParkKind.Student,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(5),
@@ -202,7 +275,9 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        assertThrows(IllegalArgumentException.class, () -> new Rate(Rate.CarParkKind.Student,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(11),
@@ -220,7 +295,9 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        assertThrows(IllegalArgumentException.class, () -> new Rate(Rate.CarParkKind.Student,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(5),
@@ -242,14 +319,16 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
                 BigDecimal.valueOf(2));
 
         Period periodStay = new Period(8,12);
-        assertEquals(BigDecimal.valueOf(16),rate.calculate(periodStay));
+        Assertions.assertEquals(BigDecimal.valueOf(16),rate.calculate(periodStay));
     }
     @Test // 2
     void testValidReducedPeriodCalculation(){
@@ -263,14 +342,16 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
                 BigDecimal.valueOf(2));
 
         Period periodStay = new Period(4,8);
-        assertEquals(BigDecimal.valueOf(8),rate.calculate(periodStay));
+        Assertions.assertEquals(BigDecimal.valueOf(8),rate.calculate(periodStay));
     }
     @Test // 3
     void testValidReducedAndNormalCalculation(){
@@ -284,14 +365,16 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
                 BigDecimal.valueOf(2));
 
         Period periodStay = new Period(4,12);
-        assertEquals(BigDecimal.valueOf(24),rate.calculate(periodStay));
+        Assertions.assertEquals(BigDecimal.valueOf(24),rate.calculate(periodStay));
     }
     @Test // 4
     void testValidFreeCalculation(){
@@ -305,14 +388,16 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
                 BigDecimal.valueOf(2));
 
         Period periodStay = new Period(0,2);
-        assertEquals(BigDecimal.valueOf(0),rate.calculate(periodStay));
+        Assertions.assertEquals(BigDecimal.valueOf(0),rate.calculate(periodStay));
     }
     @Test // 5
     void testValidFreeAndReducedPeriodCalculation(){
@@ -326,14 +411,16 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
                 BigDecimal.valueOf(2));
 
         Period periodStay = new Period(0,8);
-        assertEquals(BigDecimal.valueOf(8),rate.calculate(periodStay));
+        Assertions.assertEquals(BigDecimal.valueOf(8),rate.calculate(periodStay));
     }
     @Test // 6
     void testValidFreeAndNormalPeriodCalculation(){
@@ -347,14 +434,16 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
                 BigDecimal.valueOf(2));
 
         Period periodStay = new Period(8,14);
-        assertEquals(BigDecimal.valueOf(16),rate.calculate(periodStay));
+        Assertions.assertEquals(BigDecimal.valueOf(16),rate.calculate(periodStay));
     }
     @Test // 7
     void testValidFreeReducedNormalCalculation(){
@@ -368,13 +457,15 @@ class RateTest{
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
 
-        Rate rate = new Rate(Rate.CarParkKind.Staff,
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        Rate rate = new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(4),
                 BigDecimal.valueOf(2));
 
         Period periodStay = new Period(0,13);
-        assertEquals(BigDecimal.valueOf(24),rate.calculate(periodStay));
+        Assertions.assertEquals(BigDecimal.valueOf(24),rate.calculate(periodStay));
     }
 }

@@ -1,5 +1,6 @@
-//package cm;
+package cm;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 //Name: Michael Cullen
 //Student ID: C00261635
 //Date: 22/10/2024
-class PeriodTest{
-    //partition Period
+class CullenMichaelPeriodTests{
+    //partition cm.Period
     @Test // 1
     void testValidLowBoundary(){
         Period period = new Period(0,1);
@@ -47,13 +48,13 @@ class PeriodTest{
     @Test // 1
     void ValidLowRange(){
         Period period = new Period(0,1);
-        assertEquals(1,period.duration());
+        Assertions.assertEquals(1,period.duration());
     }
 
     @Test // 2
     void testValidHighRange(){
         Period period = new Period(0,24);
-        assertEquals(24,period.duration());
+        Assertions.assertEquals(24,period.duration());
     }
 
 
@@ -62,14 +63,14 @@ class PeriodTest{
     void testValidNoOverlap(){
         Period period = new Period(8,12);
         Period period2 = new Period(13,18);
-        assertFalse(period.overlaps(period2));
+        Assertions.assertFalse(period.overlaps(period2));
     }
 
     @Test // 2
     void testValidOverLap(){
         Period period = new Period(12,17);
         Period period2 = new Period(14,16);
-        assertTrue(period.overlaps(period2));
+        Assertions.assertTrue(period.overlaps(period2));
     }
 }
 
