@@ -42,6 +42,15 @@ class CullenMichaelTestTaskPeriod2{
         assertThrows(IllegalArgumentException.class, () -> new Period(8,7));
     }
 
+    @Test // 6
+    void testInvalidStartLessThenEnd2(){
+        assertThrows(IllegalArgumentException.class, () -> new Period(25,26));
+    }
+
+    @Test // 6
+    void testInvalidStartLessThenEnd3(){
+        assertThrows(IllegalArgumentException.class, () -> new Period(-2,-1));
+    }
 
     //partition Duration
 

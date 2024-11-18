@@ -323,21 +323,65 @@ class CullenMichaelTestTaskRate2{
                 reducedPeriods,
                 normalPeriods,
                 null,
+                BigDecimal.valueOf(5)));
+    }
+
+    @Test // 14
+    void testInvalidNullReducedRate(){
+
+        Period reducedPeriod = new Period(0,5);
+        Period normalPeriod = new Period(5,10);
+
+        // Create ArrayLists for periods
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(reducedPeriod);
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(normalPeriod);
+
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
+                reducedPeriods,
+                normalPeriods,
+                BigDecimal.valueOf(5),
                 null));
     }
 
-    @Test // 15
+    @Test // 16
     void testInvalidNullPeriod(){
+
+        Period reducedPeriod = new Period(0,5);
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(reducedPeriod);
+
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
+                reducedPeriods,
+                null,
+                BigDecimal.valueOf(5),
+                BigDecimal.valueOf(4)));
+    }
+
+    @Test // 17
+    void testInvalidNullReducedPeriod(){
+
+        Period normalPeriod = new Period(5,10);
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(normalPeriod);
 
         CarParkKind kind = CarParkKind.STUDENT;
 
         assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
                 null,
-                null,
+                normalPeriods,
                 BigDecimal.valueOf(5),
                 BigDecimal.valueOf(4)));
     }
-    @Test // 16
+    @Test // 18
     void testInvalidOverlappingNormalPeriods() {
         Period reducedPeriod = new Period(5, 10);
 
@@ -361,7 +405,7 @@ class CullenMichaelTestTaskRate2{
         ));
     }
 
-    @Test // 17
+    @Test // 19
     void testInvalidOverlappingReducedAndNormalPeriodsCombined() {
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -383,7 +427,7 @@ class CullenMichaelTestTaskRate2{
         ));
     }
 
-    @Test // 18
+    @Test // 20
     void testInvalidOverlappingReducedAndNormalPeriods() {
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(0, 5));
@@ -392,10 +436,32 @@ class CullenMichaelTestTaskRate2{
         normalPeriods.add(new Period(4, 8)); // Overlaps with reduced period
 
         assertThrows(IllegalArgumentException.class, () -> new Rate(
-                CarParkKind.STUDENT, reducedPeriods, normalPeriods, BigDecimal.valueOf(5), BigDecimal.valueOf(2)
+                CarParkKind.STUDENT,
+                reducedPeriods,
+                normalPeriods,
+                BigDecimal.valueOf(5),
+                BigDecimal.valueOf(2)
         ));
     }
 
+    @Test // 21
+    void testIsValidPeriodsFalseCondition() {
+        // Create test periods
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(8, 12));  // Valid period
+        reducedPeriods.add(new Period(13, 18)); // Will cause isValidPeriod to return false
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(10, 14)); // Overlaps with the second period in periods1
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(
+                CarParkKind.STUDENT,
+                reducedPeriods,
+                normalPeriods,
+                BigDecimal.valueOf(5),
+                BigDecimal.valueOf(2)
+        ));
+    }
 
     //partition Calculate
 
