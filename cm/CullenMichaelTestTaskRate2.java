@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 //Name: Michael Cullen
 //Student ID: C00261635
 //Date: 22/10/2024
-class CullenMichaelRateTests{
+class CullenMichaelTestTaskRate2{
     //partition cm.Rate
     @Test // 1
     void testValidCarParkKind1(){
@@ -219,7 +219,7 @@ class CullenMichaelRateTests{
                 reducedPeriods,
                 normalPeriods,
                 BigDecimal.valueOf(-1),
-                BigDecimal.valueOf(5)));
+                BigDecimal.valueOf(-2)));
     }
 
     @Test // 10
@@ -280,7 +280,7 @@ class CullenMichaelRateTests{
         assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
                 reducedPeriods,
                 normalPeriods,
-                BigDecimal.valueOf(11),
+                BigDecimal.valueOf(12),
                 BigDecimal.valueOf(11)));
     }
     @Test // 13
@@ -302,6 +302,98 @@ class CullenMichaelRateTests{
                 normalPeriods,
                 BigDecimal.valueOf(5),
                 BigDecimal.valueOf(6)));
+    }
+
+    @Test // 14
+    void testInvalidNullRate(){
+
+        Period reducedPeriod = new Period(0,5);
+        Period normalPeriod = new Period(5,10);
+
+        // Create ArrayLists for periods
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(reducedPeriod);
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(normalPeriod);
+
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
+                reducedPeriods,
+                normalPeriods,
+                null,
+                null));
+    }
+
+    @Test // 15
+    void testInvalidNullPeriod(){
+
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(kind,
+                null,
+                null,
+                BigDecimal.valueOf(5),
+                BigDecimal.valueOf(4)));
+    }
+    @Test // 16
+    void testInvalidOverlappingNormalPeriods() {
+        Period reducedPeriod = new Period(5, 10);
+
+        // Create ArrayLists for periods
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(reducedPeriod);
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0, 5));
+        normalPeriods.add(new Period(4, 5)); // Overlaps with the previous period
+        normalPeriods.add(new Period(4, 5)); // Duplicate period
+
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(
+                kind,
+                reducedPeriods,
+                normalPeriods,
+                BigDecimal.valueOf(5),
+                BigDecimal.valueOf(2)
+        ));
+    }
+
+    @Test // 17
+    void testInvalidOverlappingReducedAndNormalPeriodsCombined() {
+        // Create ArrayLists for periods
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(5, 10));
+        reducedPeriods.add(new Period(4, 10)); // Overlaps with the first reduced period
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(15, 20));
+        normalPeriods.add(new Period(14, 20)); // Overlaps with the first normal period
+
+        CarParkKind kind = CarParkKind.STUDENT;
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(
+                kind,
+                reducedPeriods,
+                normalPeriods,
+                BigDecimal.valueOf(5),
+                BigDecimal.valueOf(2)
+        ));
+    }
+
+    @Test // 18
+    void testInvalidOverlappingReducedAndNormalPeriods() {
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(4, 8)); // Overlaps with reduced period
+
+        assertThrows(IllegalArgumentException.class, () -> new Rate(
+                CarParkKind.STUDENT, reducedPeriods, normalPeriods, BigDecimal.valueOf(5), BigDecimal.valueOf(2)
+        ));
     }
 
 
@@ -468,4 +560,19 @@ class CullenMichaelRateTests{
         Period periodStay = new Period(0,13);
         Assertions.assertEquals(BigDecimal.valueOf(24),rate.calculate(periodStay));
     }
+
+    @Test // 8
+    void testVisitorCalculation() {
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(0, 5));
+
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(5, 10));
+
+        Rate rate = new Rate(CarParkKind.VISITOR, reducedPeriods, normalPeriods, BigDecimal.valueOf(5), BigDecimal.valueOf(3));
+
+        Period periodStay = new Period(0, 10); // Any period for visitor
+        Assertions.assertEquals(BigDecimal.ZERO, rate.calculate(periodStay));
+    }
+
 }

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 //Name: Michael Cullen
 //Student ID: C00261635
 //Date: 22/10/2024
-class CullenMichaelPeriodTests{
+class CullenMichaelTestTaskPeriod2{
     //partition cm.Period
     @Test // 1
     void testValidLowBoundary(){
@@ -72,5 +72,8 @@ class CullenMichaelPeriodTests{
         Period period2 = new Period(14,16);
         Assertions.assertTrue(period.overlaps(period2));
     }
+
+
+
 }
 
