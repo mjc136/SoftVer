@@ -82,7 +82,12 @@ class CullenMichaelTestTaskPeriod2{
         Assertions.assertTrue(period.overlaps(period2));
     }
 
-
+    @Test // 3
+    void testValidOverLapTouching() {
+        Period period1 = new Period(12, 16);
+        Period period2 = new Period(8, 12);
+        assertFalse(period1.overlaps(period2));
+    }
 
 }
 

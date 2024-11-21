@@ -445,14 +445,13 @@ class CullenMichaelTestTaskRate2{
     }
 
     @Test // 21
-    void testIsValidPeriodsFalseCondition() {
-        // Create test periods
+    void testInvalidOverlapPeriods() {
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(8, 12));  // Valid period
         reducedPeriods.add(new Period(13, 18)); // Will cause isValidPeriod to return false
 
         ArrayList<Period> normalPeriods = new ArrayList<>();
-        normalPeriods.add(new Period(10, 14)); // Overlaps with the second period in periods1
+        normalPeriods.add(new Period(10, 14)); // Overlaps with the second period in normal period
 
         assertThrows(IllegalArgumentException.class, () -> new Rate(
                 CarParkKind.STUDENT,
