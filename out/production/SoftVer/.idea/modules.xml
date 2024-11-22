@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SoftVer.iml" filepath="$PROJECT_DIR$/.idea/SoftVer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cm/cm.iml" filepath="$PROJECT_DIR$/cm/cm.iml" />
     </modules>
   </component>
 </project>
