@@ -1,6 +1,7 @@
 package cm;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,42 +89,47 @@ public class Rate {
         return isValid;
     }
     public BigDecimal calculate(Period periodStay) {
-        // Calculate normal and reduced rate hours
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
 
-        // Calculate the total cost before applying reductions
         BigDecimal totalCost = hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))
                 .add(hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
 
-        // Apply reduction rules based on the CarParkKind
+
         switch (kind) {
             case VISITOR:
                 if (totalCost.compareTo(BigDecimal.TEN) <= 0) {
-                    return BigDecimal.ZERO; // Free if total is <= 10
+                    totalCost = BigDecimal.ZERO;
                 } else {
-                    return totalCost.subtract(BigDecimal.TEN).multiply(BigDecimal.valueOf(0.5));
+                    totalCost = totalCost.subtract(BigDecimal.TEN).multiply(BigDecimal.valueOf(0.5));
                 }
+                break;
 
             case MANAGEMENT:
-                // Ensure a minimum payable amount of 4.00
-                return totalCost.compareTo(BigDecimal.valueOf(4)) < 0 ? BigDecimal.valueOf(4) : totalCost;
+                if (totalCost.compareTo(BigDecimal.valueOf(4)) < 0) {
+                    totalCost = BigDecimal.valueOf(4);
+                }
+                break;
 
             case STUDENT:
-                if (totalCost.compareTo(BigDecimal.valueOf(5.50)) <= 0) {
-                    return totalCost; // No reduction for amounts <= 5.50
-                } else {
-                    BigDecimal reducedAmount = totalCost.subtract(BigDecimal.valueOf(5.50)).multiply(BigDecimal.valueOf(0.75));
-                    return reducedAmount.add(BigDecimal.valueOf(5.50));
+                if (totalCost.compareTo(BigDecimal.valueOf(5.50)) > 0) {
+                    BigDecimal excess = totalCost.subtract(BigDecimal.valueOf(5.50)).multiply(BigDecimal.valueOf(0.75));
+                    totalCost = excess.add(BigDecimal.valueOf(5.50));
                 }
+                break;
 
             case STAFF:
-                // Cap the total payable amount at 16.00
-                return totalCost.compareTo(BigDecimal.valueOf(16)) > 0 ? BigDecimal.valueOf(16) : totalCost;
+                if (totalCost.compareTo(BigDecimal.valueOf(16)) > 0) {
+                    totalCost = BigDecimal.valueOf(16);
+                }
+                break;
 
             default:
                 throw new IllegalArgumentException("Invalid CarParkKind");
         }
+
+        return totalCost.setScale(2, RoundingMode.HALF_UP);
     }
 
 }
+

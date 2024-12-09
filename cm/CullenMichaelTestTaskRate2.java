@@ -4,18 +4,21 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 //Name: Michael Cullen
 //Student ID: C00261635
 //Date: 22/10/2024
-class CullenMichaelTestTaskRate2{
+class CullenMichaelTestTaskRate2 {
     //partition cm.Rate
-    @Test // 1
-    void testValidCarParkKind1(){
+    @Test
+    // 1
+    void testValidCarParkKind1() {
         Period reducedPeriod = new Period(12, 15);
         Period normalPeriod = new Period(15, 17);
 
@@ -36,8 +39,10 @@ class CullenMichaelTestTaskRate2{
 
         assertNotNull(rate);
     }
-    @Test // 2
-    void testValidCarParkKind2(){
+
+    @Test
+        // 2
+    void testValidCarParkKind2() {
         Period reducedPeriod = new Period(12, 15);
         Period normalPeriod = new Period(15, 17);
 
@@ -60,8 +65,9 @@ class CullenMichaelTestTaskRate2{
         assertNotNull(rate);
     }
 
-    @Test // 3
-    void testValidCarParkKind3(){
+    @Test
+        // 3
+    void testValidCarParkKind3() {
         Period reducedPeriod = new Period(12, 15);
         Period normalPeriod = new Period(15, 17);
 
@@ -84,8 +90,9 @@ class CullenMichaelTestTaskRate2{
         assertNotNull(rate);
     }
 
-    @Test // 4
-    void testValidCarParkKind4(){
+    @Test
+        // 4
+    void testValidCarParkKind4() {
         Period reducedPeriod = new Period(12, 15);
         Period normalPeriod = new Period(15, 17);
 
@@ -108,10 +115,11 @@ class CullenMichaelTestTaskRate2{
         assertNotNull(rate);
     }
 
-    @Test // 5
-    void testValidLowBoundaryNormalRate(){
-        Period reducedPeriod = new Period(12,17);
-        Period normalPeriod = new Period(17,20);
+    @Test
+        // 5
+    void testValidLowBoundaryNormalRate() {
+        Period reducedPeriod = new Period(12, 17);
+        Period normalPeriod = new Period(17, 20);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -131,11 +139,12 @@ class CullenMichaelTestTaskRate2{
         assertNotNull(rate);
     }
 
-    @Test // 6
-    void testValidHighBoundaryNormalRate(){
+    @Test
+        // 6
+    void testValidHighBoundaryNormalRate() {
 
-        Period reducedPeriod = new Period(12,17);
-        Period normalPeriod = new Period(17,20);
+        Period reducedPeriod = new Period(12, 17);
+        Period normalPeriod = new Period(17, 20);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -154,10 +163,12 @@ class CullenMichaelTestTaskRate2{
 
         assertNotNull(rate);
     }
-    @Test // 7
-    void testValidLowBoundaryReducedRate(){
-        Period reducedPeriod = new Period(12,17);
-        Period normalPeriod = new Period(17,20);
+
+    @Test
+        // 7
+    void testValidLowBoundaryReducedRate() {
+        Period reducedPeriod = new Period(12, 17);
+        Period normalPeriod = new Period(17, 20);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -177,11 +188,12 @@ class CullenMichaelTestTaskRate2{
         assertNotNull(rate);
     }
 
-    @Test // 8
-    void testValidHighBoundaryReducedRate(){
+    @Test
+        // 8
+    void testValidHighBoundaryReducedRate() {
 
-        Period reducedPeriod = new Period(12,17);
-        Period normalPeriod = new Period(17,20);
+        Period reducedPeriod = new Period(12, 17);
+        Period normalPeriod = new Period(17, 20);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -201,10 +213,11 @@ class CullenMichaelTestTaskRate2{
         assertNotNull(rate);
     }
 
-    @Test // 9
-    void testInvalidLowBoundaryNormalRate(){
-        Period reducedPeriod = new Period(0,5);
-        Period normalPeriod = new Period(5,10);
+    @Test
+        // 9
+    void testInvalidLowBoundaryNormalRate() {
+        Period reducedPeriod = new Period(0, 5);
+        Period normalPeriod = new Period(5, 10);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -222,10 +235,11 @@ class CullenMichaelTestTaskRate2{
                 BigDecimal.valueOf(-2)));
     }
 
-    @Test // 10
-    void testInvalidHighBoundaryNormalRate(){
-        Period reducedPeriod = new Period(0,5);
-        Period normalPeriod = new Period(5,10);
+    @Test
+        // 10
+    void testInvalidHighBoundaryNormalRate() {
+        Period reducedPeriod = new Period(0, 5);
+        Period normalPeriod = new Period(5, 10);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -242,10 +256,12 @@ class CullenMichaelTestTaskRate2{
                 BigDecimal.valueOf(11),
                 BigDecimal.valueOf(5)));
     }
-    @Test // 11
-    void testInvalidLowBoundaryReducedRate(){
-        Period reducedPeriod = new Period(0,5);
-        Period normalPeriod = new Period(5,10);
+
+    @Test
+        // 11
+    void testInvalidLowBoundaryReducedRate() {
+        Period reducedPeriod = new Period(0, 5);
+        Period normalPeriod = new Period(5, 10);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -263,10 +279,11 @@ class CullenMichaelTestTaskRate2{
                 BigDecimal.valueOf(-1)));
     }
 
-    @Test // 12
-    void testInvalidHighBoundaryReducedRate(){
-        Period reducedPeriod = new Period(0,5);
-        Period normalPeriod = new Period(5,10);
+    @Test
+        // 12
+    void testInvalidHighBoundaryReducedRate() {
+        Period reducedPeriod = new Period(0, 5);
+        Period normalPeriod = new Period(5, 10);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -283,10 +300,12 @@ class CullenMichaelTestTaskRate2{
                 BigDecimal.valueOf(12),
                 BigDecimal.valueOf(11)));
     }
-    @Test // 13
-    void testInvalidReducedRateMoreThenNormalRate(){
-        Period reducedPeriod = new Period(0,5);
-        Period normalPeriod = new Period(5,10);
+
+    @Test
+        // 13
+    void testInvalidReducedRateMoreThenNormalRate() {
+        Period reducedPeriod = new Period(0, 5);
+        Period normalPeriod = new Period(5, 10);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -304,11 +323,12 @@ class CullenMichaelTestTaskRate2{
                 BigDecimal.valueOf(6)));
     }
 
-    @Test // 14
-    void testInvalidNullRate(){
+    @Test
+        // 14
+    void testInvalidNullRate() {
 
-        Period reducedPeriod = new Period(0,5);
-        Period normalPeriod = new Period(5,10);
+        Period reducedPeriod = new Period(0, 5);
+        Period normalPeriod = new Period(5, 10);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -326,11 +346,12 @@ class CullenMichaelTestTaskRate2{
                 BigDecimal.valueOf(5)));
     }
 
-    @Test // 14
-    void testInvalidNullReducedRate(){
+    @Test
+        // 15
+    void testInvalidNullReducedRate() {
 
-        Period reducedPeriod = new Period(0,5);
-        Period normalPeriod = new Period(5,10);
+        Period reducedPeriod = new Period(0, 5);
+        Period normalPeriod = new Period(5, 10);
 
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -348,10 +369,11 @@ class CullenMichaelTestTaskRate2{
                 null));
     }
 
-    @Test // 16
-    void testInvalidNullPeriod(){
+    @Test
+        // 16
+    void testInvalidNullPeriod() {
 
-        Period reducedPeriod = new Period(0,5);
+        Period reducedPeriod = new Period(0, 5);
 
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(reducedPeriod);
@@ -365,10 +387,11 @@ class CullenMichaelTestTaskRate2{
                 BigDecimal.valueOf(4)));
     }
 
-    @Test // 17
-    void testInvalidNullReducedPeriod(){
+    @Test
+        // 17
+    void testInvalidNullReducedPeriod() {
 
-        Period normalPeriod = new Period(5,10);
+        Period normalPeriod = new Period(5, 10);
 
         ArrayList<Period> normalPeriods = new ArrayList<>();
         normalPeriods.add(normalPeriod);
@@ -381,7 +404,9 @@ class CullenMichaelTestTaskRate2{
                 BigDecimal.valueOf(5),
                 BigDecimal.valueOf(4)));
     }
-    @Test // 18
+
+    @Test
+        // 18
     void testInvalidOverlappingNormalPeriods() {
         Period reducedPeriod = new Period(5, 10);
 
@@ -405,7 +430,8 @@ class CullenMichaelTestTaskRate2{
         ));
     }
 
-    @Test // 19
+    @Test
+        // 19
     void testInvalidOverlappingReducedAndNormalPeriodsCombined() {
         // Create ArrayLists for periods
         ArrayList<Period> reducedPeriods = new ArrayList<>();
@@ -427,7 +453,8 @@ class CullenMichaelTestTaskRate2{
         ));
     }
 
-    @Test // 20
+    @Test
+        // 20
     void testInvalidOverlappingReducedAndNormalPeriods() {
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(0, 5));
@@ -444,7 +471,8 @@ class CullenMichaelTestTaskRate2{
         ));
     }
 
-    @Test // 21
+    @Test
+        // 21
     void testInvalidOverlapPeriods() {
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(8, 12));  // Valid period
@@ -462,182 +490,72 @@ class CullenMichaelTestTaskRate2{
         ));
     }
 
-    //partition Calculate
 
     @Test // 1
-    void testValidNormalPeriodCalculation(){
-        Period normalPeriod = new Period(8,12);
-        Period reducedPeriod = new Period(4,8);
-
-        // Create ArrayLists for periods
-        ArrayList<Period> reducedPeriods = new ArrayList<>();
-        reducedPeriods.add(reducedPeriod);
-
+    void testVisitorFreeCalculation() {
         ArrayList<Period> normalPeriods = new ArrayList<>();
-        normalPeriods.add(normalPeriod);
+        normalPeriods.add(new Period(0, 5));
 
-        CarParkKind kind = CarParkKind.STUDENT;
+        Rate rate = new Rate(CarParkKind.VISITOR, new ArrayList<>(), normalPeriods, BigDecimal.valueOf(5), BigDecimal.valueOf(3));
 
-        Rate rate = new Rate(kind,
-                reducedPeriods,
-                normalPeriods,
-                BigDecimal.valueOf(4),
-                BigDecimal.valueOf(2));
-
-        Period periodStay = new Period(8,12);
-        Assertions.assertEquals(BigDecimal.valueOf(16),rate.calculate(periodStay));
+        Period periodStay = new Period(0, 2);
+        Assertions.assertEquals(BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), rate.calculate(periodStay));
     }
+
     @Test // 2
-    void testValidReducedPeriodCalculation(){
-        Period normalPeriod = new Period(8,12);
-        Period reducedPeriod = new Period(4,8);
-
-        // Create ArrayLists for periods
-        ArrayList<Period> reducedPeriods = new ArrayList<>();
-        reducedPeriods.add(reducedPeriod);
-
+    void testVisitorDiscountCalculation() {
         ArrayList<Period> normalPeriods = new ArrayList<>();
-        normalPeriods.add(normalPeriod);
+        normalPeriods.add(new Period(0, 5));
 
-        CarParkKind kind = CarParkKind.STUDENT;
+        Rate rate = new Rate(CarParkKind.VISITOR, new ArrayList<>(), normalPeriods, BigDecimal.valueOf(5), BigDecimal.valueOf(3));
 
-        Rate rate = new Rate(kind,
-                reducedPeriods,
-                normalPeriods,
-                BigDecimal.valueOf(4),
-                BigDecimal.valueOf(2));
-
-        Period periodStay = new Period(4,8);
-        Assertions.assertEquals(BigDecimal.valueOf(8),rate.calculate(periodStay));
+        Period periodStay = new Period(0, 5); // 5 hours * 5 = 25; (25 - 10) * 0.5 = 7.5
+        Assertions.assertEquals(BigDecimal.valueOf(7.50).setScale(2, RoundingMode.HALF_UP), rate.calculate(periodStay));
     }
+
     @Test // 3
-    void testValidReducedAndNormalCalculation(){
-        Period normalPeriod = new Period(8,12);
-        Period reducedPeriod = new Period(4,8);
-
-        // Create ArrayLists for periods
-        ArrayList<Period> reducedPeriods = new ArrayList<>();
-        reducedPeriods.add(reducedPeriod);
-
+    void testManagementMinimumCharge() {
         ArrayList<Period> normalPeriods = new ArrayList<>();
-        normalPeriods.add(normalPeriod);
+        normalPeriods.add(new Period(8, 9));
 
-        CarParkKind kind = CarParkKind.STUDENT;
+        Rate rate = new Rate(CarParkKind.MANAGEMENT, new ArrayList<>(), normalPeriods, BigDecimal.valueOf(2), BigDecimal.valueOf(1));
 
-        Rate rate = new Rate(kind,
-                reducedPeriods,
-                normalPeriods,
-                BigDecimal.valueOf(4),
-                BigDecimal.valueOf(2));
-
-        Period periodStay = new Period(4,12);
-        Assertions.assertEquals(BigDecimal.valueOf(24),rate.calculate(periodStay));
+        Period periodStay = new Period(8, 9); // 1 hour * 2 = 2; minimum charge = 4
+        Assertions.assertEquals(BigDecimal.valueOf(4.00).setScale(2, RoundingMode.HALF_UP), rate.calculate(periodStay));
     }
+
     @Test // 4
-    void testValidFreeCalculation(){
-        Period normalPeriod = new Period(8,12);
-        Period reducedPeriod = new Period(4,8);
-
-        // Create ArrayLists for periods
-        ArrayList<Period> reducedPeriods = new ArrayList<>();
-        reducedPeriods.add(reducedPeriod);
-
+    void testStudentNoDiscount() {
         ArrayList<Period> normalPeriods = new ArrayList<>();
-        normalPeriods.add(normalPeriod);
+        normalPeriods.add(new Period(8, 9));
 
-        CarParkKind kind = CarParkKind.STUDENT;
+        Rate rate = new Rate(CarParkKind.STUDENT, new ArrayList<>(), normalPeriods, BigDecimal.valueOf(5), BigDecimal.valueOf(3));
 
-        Rate rate = new Rate(kind,
-                reducedPeriods,
-                normalPeriods,
-                BigDecimal.valueOf(4),
-                BigDecimal.valueOf(2));
-
-        Period periodStay = new Period(0,2);
-        Assertions.assertEquals(BigDecimal.valueOf(0),rate.calculate(periodStay));
+        Period periodStay = new Period(8, 9); // 1 hour * 5 = 5; no discount (<= 5.50)
+        Assertions.assertEquals(BigDecimal.valueOf(5.00).setScale(2, RoundingMode.HALF_UP), rate.calculate(periodStay));
     }
+
     @Test // 5
-    void testValidFreeAndReducedPeriodCalculation(){
-        Period normalPeriod = new Period(8,12);
-        Period reducedPeriod = new Period(4,8);
-
-        // Create ArrayLists for periods
-        ArrayList<Period> reducedPeriods = new ArrayList<>();
-        reducedPeriods.add(reducedPeriod);
-
+    void testStudentDiscountCalculation() {
         ArrayList<Period> normalPeriods = new ArrayList<>();
-        normalPeriods.add(normalPeriod);
+        normalPeriods.add(new Period(8, 12));
 
-        CarParkKind kind = CarParkKind.STUDENT;
+        Rate rate = new Rate(CarParkKind.STUDENT, new ArrayList<>(), normalPeriods, BigDecimal.valueOf(4), BigDecimal.valueOf(2));
 
-        Rate rate = new Rate(kind,
-                reducedPeriods,
-                normalPeriods,
-                BigDecimal.valueOf(4),
-                BigDecimal.valueOf(2));
-
-        Period periodStay = new Period(0,8);
-        Assertions.assertEquals(BigDecimal.valueOf(8),rate.calculate(periodStay));
+        Period periodStay = new Period(8, 12); // 4 hours * 4 = 16; (16 - 5.50) * 0.75 + 5.50 = 13.375
+        Assertions.assertEquals(BigDecimal.valueOf(13.38).setScale(2, RoundingMode.HALF_UP), rate.calculate(periodStay));
     }
+
     @Test // 6
-    void testValidFreeAndNormalPeriodCalculation(){
-        Period normalPeriod = new Period(8,12);
-        Period reducedPeriod = new Period(4,8);
-
-        // Create ArrayLists for periods
-        ArrayList<Period> reducedPeriods = new ArrayList<>();
-        reducedPeriods.add(reducedPeriod);
-
+    void testStaffCapCalculation() {
         ArrayList<Period> normalPeriods = new ArrayList<>();
-        normalPeriods.add(normalPeriod);
+        normalPeriods.add(new Period(8, 16));
 
-        CarParkKind kind = CarParkKind.STUDENT;
+        Rate rate = new Rate(CarParkKind.STAFF, new ArrayList<>(), normalPeriods, BigDecimal.valueOf(3), BigDecimal.valueOf(2));
 
-        Rate rate = new Rate(kind,
-                reducedPeriods,
-                normalPeriods,
-                BigDecimal.valueOf(4),
-                BigDecimal.valueOf(2));
-
-        Period periodStay = new Period(8,14);
-        Assertions.assertEquals(BigDecimal.valueOf(16),rate.calculate(periodStay));
+        Period periodStay = new Period(8, 16); // 8 hours * 3 = 24; capped at 16
+        Assertions.assertEquals(BigDecimal.valueOf(16.00).setScale(2, RoundingMode.HALF_UP), rate.calculate(periodStay));
     }
-    @Test // 7
-    void testValidFreeReducedNormalCalculation(){
-        Period normalPeriod = new Period(8,12);
-        Period reducedPeriod = new Period(4,8);
-
-        // Create ArrayLists for periods
-        ArrayList<Period> reducedPeriods = new ArrayList<>();
-        reducedPeriods.add(reducedPeriod);
-
-        ArrayList<Period> normalPeriods = new ArrayList<>();
-        normalPeriods.add(normalPeriod);
-
-        CarParkKind kind = CarParkKind.STUDENT;
-
-        Rate rate = new Rate(kind,
-                reducedPeriods,
-                normalPeriods,
-                BigDecimal.valueOf(4),
-                BigDecimal.valueOf(2));
-
-        Period periodStay = new Period(0,13);
-        Assertions.assertEquals(BigDecimal.valueOf(24),rate.calculate(periodStay));
-    }
-
-    @Test // 8
-    void testVisitorCalculation() {
-        ArrayList<Period> reducedPeriods = new ArrayList<>();
-        reducedPeriods.add(new Period(0, 5));
-
-        ArrayList<Period> normalPeriods = new ArrayList<>();
-        normalPeriods.add(new Period(5, 10));
-
-        Rate rate = new Rate(CarParkKind.VISITOR, reducedPeriods, normalPeriods, BigDecimal.valueOf(5), BigDecimal.valueOf(3));
-
-        Period periodStay = new Period(0, 10); // Any period for visitor
-        Assertions.assertEquals(BigDecimal.ZERO, rate.calculate(periodStay));
-    }
-
 }
+
+
